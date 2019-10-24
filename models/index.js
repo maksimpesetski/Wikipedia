@@ -21,6 +21,10 @@ const Page = db.define('page', {
   },
 });
 
+Page.beforeValidate(inst => {
+  inst.slug = inst.title.replace(/\s+/g, '_').replace(/\W/g, '');
+});
+
 const User = db.define('user', {
   name: {
     type: Sequelize.STRING,
@@ -37,5 +41,7 @@ const User = db.define('user', {
     },
   },
 });
+
+Page.belongsTo(User, { as: 'author' });
 
 module.exports = { db, Page, User };

@@ -11,6 +11,7 @@ app.use(express.json());
 app.use(morgan('dev'));
 app.use(express.static(__dirname + '/public'));
 app.use('/wiki', wiki);
+app.use('/users', user);
 
 app.get('/', (req, res) => {
   res.redirect('/wiki');
